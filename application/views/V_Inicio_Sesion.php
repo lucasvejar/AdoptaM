@@ -17,7 +17,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary">Iniciar Sesión</button>	
 			</form>
-			<a href="#" data-toogle="modal" data-target="#bannerformmodal" >No esta registrado? Registrese aquí.</a>
+			<a href="<?= base_url('C_Registro') ?>" >No esta registrado? Registrese aquí.</a>
 			</center>
 			</div>
 		<div class="col"></div>
