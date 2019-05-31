@@ -9,10 +9,10 @@
   <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/bootstrap/css/bootstrap.css">
   <!-- La libreria de FontAwesome -->
   <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/fontawesome/css/all.css">
-
+  <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/bootstrap.min.js"></script>
 
   <title>AdoptaMe</title>
-  <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/jquery-3.3.1.min.js"></script>
   
   
 </head>
@@ -33,11 +33,14 @@
           <a class="nav-link" href="<?= base_url('C_Campanias') ?>"><i class="fas fa-notes-medical"></i> Campañas</a>
         </li>
         <li class="nav-item active">
+          <a class="nav-link" href="<?= base_url('C_Perfil') ?>"><i class="fas fa-user"></i> Mi Perfil</a>
+        </li>
+        <li class="nav-item active">
           <a class="nav-link" href="<?= base_url('C_InicioSesion/cerrarSesion') ?>"><i class="fas fa-home"></i> Cerrar Sesión</a>
         </li>
       <?php else: ?>
         <li class="nav-item active">
-          <a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-home"></i> Iniciar Sesión</a>
+          <a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-paw"></i> Iniciar Sesión</a>
         </li>
       <?php endif ?>
       </ul>

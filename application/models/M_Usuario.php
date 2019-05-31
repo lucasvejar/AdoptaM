@@ -26,13 +26,13 @@ class M_Usuario extends CI_Model {
 		$this->email_usuario = $row->email_usuario;
 		$this->telefono_usuario = $row->telefono_usuario;
 		$this->domicilio_usuario =$row->domicilio_usuario;
-		$this->imagenes = $this-> imagen -> obtenerImagenes($this->id_usuario);
+		$this->imagenes = $this->imagen->obtenerImagenes($this->id_usuario);
 	}
 
-	function obtenerUno($id)
+	function obtenerUno($dni)
     {
 		$this->db->from('usuario');
-		$this->db-> where('id_usuario', $id);
+		$this->db-> where('dni_usuario', $dni);
 		$query = $this->db->get();
 
 		if ($query->num_rows() == 1) {
@@ -50,9 +50,9 @@ class M_Usuario extends CI_Model {
 		$result = array();
 		$this->db->from('usuario');
 		$query = $this->db->get();
-		if ($query->num_rows > 0) {
+		if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
-				$new_object - new self();
+				$new_object = new self();
 				$new_object->init($row);
 				$result[] = $new_object;
 				return $result;
