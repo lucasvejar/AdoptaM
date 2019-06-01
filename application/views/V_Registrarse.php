@@ -60,7 +60,7 @@
 					</div>
                     <div class="form-group">
 						<input required type="password" class="form-control mx-2" name="contraseña" id="contraseña" placeholder="Ingrese una contraseña..." onchange="">
-						<div class="valid-feedback mx-2" id="emailV"></div>
+						<div class="valid-feedback mx-2" id="passV"></div>
 					</div>
 					<div class="row">
                         <div class="col">

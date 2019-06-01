@@ -20,6 +20,33 @@ class C_Perfil extends CI_Controller {
         $this -> load -> view('plantilla/footer');
     }
 
+
+    /*  Edita la informacion del usuario */
+    public function guardarEdicion()
+    {
+        $registro = array(
+            'dni_usuario' => $this -> input -> post('dni'),
+            'nombre_usuario' => $this -> input -> post('nombre'),
+            'apellido_usuario' => $this -> input -> post('apellido'),
+            'email_usuario' => $this -> input -> post('email'),
+            'telefono_usuario' => $this -> input -> post('telefono'),
+            'domicilio_usuario' => $this -> input -> post('domicilio')
+        );
+        /*
+        *	En este lugar se deberia verificar con la api del gobierno que los datos que ingrese sean validos??¡?¡?¡?
+        *	Digo por lo de si quiere cambiar de domicilio y eso ¡?¡?¡?¿'¡'¡'????
+        *
+        */
+        $respuesta = $this->usuario->updateUsuario($registro);
+        if ($respuesta) {
+            $respuesta = 'guardado';
+        } else {
+            $respuesta = 'no guardado';
+        }
+
+        echo json_encode($respuesta);
+    }
+
 }
 
 ?>

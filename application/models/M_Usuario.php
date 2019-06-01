@@ -28,6 +28,7 @@ class M_Usuario extends CI_Model {
 		$this->domicilio_usuario =$row->domicilio_usuario;
 		$this->imagenes = $this->imagen->obtenerImagenes($this->id_usuario);
 	}
+	
 
 	function obtenerUno($dni)
     {
@@ -73,6 +74,14 @@ class M_Usuario extends CI_Model {
 			return false;
 		}
 	}
+
+
+	function updateUsuario($data)
+	{
+		$this-> db -> where('dni_usuario',$data['dni_usuario']);
+		return $this -> db -> update('usuario',$data);
+	}
+
 
 }
 
