@@ -3,7 +3,7 @@
     <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <footer>
+    <footer id="footer">
         <div class="container-fluid text-light bg-dark">
           <center>
           <div class="row">
