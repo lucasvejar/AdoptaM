@@ -11,8 +11,12 @@ class C_Campanias extends CI_Controller {
 
 
     public function index(){
+        $var = array(
+            ''
+        );
+        $data['campañas'] = $var;
         $this -> load -> view('plantilla/header');
-        $this -> load -> view('V_Campaña');
+        $this -> load -> view('V_Campaña',$data);
         $this -> load -> view('plantilla/footer');
     }
 

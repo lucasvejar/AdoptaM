@@ -4,14 +4,12 @@
     <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/bootstrap.min.js"></script>
 
     <footer id="footer">
-        <div class="container-fluid text-light bg-dark">
+        <div class="container-fluid text-light bg-dark tituloLogin">
           <center>
           <div class="row">
              <div class="col-4 my-2">
                 <h6><i class="fas fa-users"></i> Nosotros:</h6>
-                <p>
-                Aca va la descripcion
-                </p>
+                <p>Somos una comunidad de personas que se preocupa por el cuidado de las mascotas.</p>
             </div>	
             <div class="col-4 my-2">
                 <h6><i class="fas fa-code"></i> Desarrolladores:</h6>

@@ -20,7 +20,7 @@ class C_Prueba extends REST_Controller {
         //$data = json_decode('');
        // echo $data;
         $user = json_decode(
-            file_get_contents('http://192.168.1.2/CodeIgniter-3.1.10/index.php/api/')
+            file_get_contents('http://192.168.43.168/rescatistaAnimales/index.php/rescatista_REST/animales')//('http://192.168.1.2/CodeIgniter-3.1.10/index.php/api/')
         );
         echo '<pre>';
         echo print_r($user);

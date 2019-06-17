@@ -32,6 +32,7 @@ class M_Imagen extends CI_Model {
     }
 
 
+
     public function obtenerImagenes($id_usuario)
     {
         $result = array();
@@ -43,8 +44,8 @@ class M_Imagen extends CI_Model {
                 $new_object = new self();
                 $new_object->init($row);
                 $result[] = $new_object;
-                return $result;
             }
+            return $result;
         } else {
             return false;
         }

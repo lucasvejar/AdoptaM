@@ -14,7 +14,17 @@ class C_Perfil extends CI_Controller {
 
 
     public function index(){
-        $data['usuario'] = $this->usuario->obtenerUno($this -> session -> userdata('dni_usuario'));
+        $user = $this->usuario->obtenerUno($this -> session -> userdata('dni_usuario'));
+        $data['usuario'] = $user;
+        if ($user->imagenes != false) {
+            $imagenes = array();
+            foreach ($user->imagenes as $imagen) {
+                $imagenes[] = $imagen->path;
+            }
+        } else {
+           $imagenes = false;
+        }
+        $data['imagenes'] = $imagenes;
         $this -> load -> view('plantilla/header');
         $this -> load -> view('V_Perfil',$data);
         $this -> load -> view('plantilla/footer');
@@ -45,6 +55,20 @@ class C_Perfil extends CI_Controller {
         }
 
         echo json_encode($respuesta);
+    }
+
+    public function userImages()
+    {
+        $user = $this->usuario->obtenerUno($this->session->userdata('dni_usuario'));
+        if ($user->imagenes != false) {
+            $imagenes = array();
+            foreach ($user->imagenes as $imagen) {
+                $imagenes[] = $imagen->path;
+            }
+        } else {
+           $imagenes = false;
+        }
+        echo json_encode($imagenes);
     }
 
 }

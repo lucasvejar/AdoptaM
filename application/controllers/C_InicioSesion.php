@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class C_InicioSesion extends CI_Controller {
 
 
@@ -30,6 +31,7 @@ class C_InicioSesion extends CI_Controller {
 		if ($usuario) {
 			$this->session->set_userdata($usuario);
 			redirect(base_url('C_Inicio'));
+			//redirect(base_url('C_Conexion/pedirAnimales'));
 		} else {				
 			$this->index("Usuario o contraseña incorrecta. Intente nuevamente!");
 		}
@@ -44,12 +46,6 @@ class C_InicioSesion extends CI_Controller {
 		redirect(base_url());
 	}
 
-
-	function registrarse()
-	{	
-		$email = $this -> input -> post('ususario');
-		$password = $this -> input -> post('contraseña');
-	}
 
 
 }

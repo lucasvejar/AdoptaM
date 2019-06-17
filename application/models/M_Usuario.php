@@ -13,7 +13,7 @@ class M_Usuario extends CI_Model {
 	public $telefono_usuario;
 	public $domicilio_usuario;
 	public $imagenes;  // array de imagenes
-
+	public $fecha_nacimiento;
 
 
 	function init($row){
@@ -27,6 +27,7 @@ class M_Usuario extends CI_Model {
 		$this->telefono_usuario = $row->telefono_usuario;
 		$this->domicilio_usuario =$row->domicilio_usuario;
 		$this->imagenes = $this->imagen->obtenerImagenes($this->id_usuario);
+		$this->fecha_nacimiento = $row->fecha_nacimiento;
 	}
 	
 
@@ -46,6 +47,36 @@ class M_Usuario extends CI_Model {
 		}
 	}
 
+	function obtenerPorID($id)
+    {
+		$this->db->from('usuario');
+		$this->db-> where('id_usuario', $id);
+		$query = $this->db->get();
+
+		if ($query->num_rows() == 1) {
+			$row = $query->result();
+			$new_object = new self();
+			$new_object->init($row[0]);
+			return $new_object;
+		} else {
+			return false;
+		}
+	}
+
+	function existeUsuario($dni,$email)
+	{
+		$this-> db -> from('usuario');
+		$this-> db -> where('dni_usuario',$dni);
+		$this-> db -> where('email_usuario',$email);
+		$query = $this -> db -> get();
+		if ($query->num_rows()>0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
 	function obtenerTodos()
 	{
 		$result = array();
@@ -56,8 +87,8 @@ class M_Usuario extends CI_Model {
 				$new_object = new self();
 				$new_object->init($row);
 				$result[] = $new_object;
-				return $result;
 			}
+			return $result;
 		} else {
 			return false;
 		}
@@ -81,6 +112,12 @@ class M_Usuario extends CI_Model {
 		$this-> db -> where('dni_usuario',$data['dni_usuario']);
 		return $this -> db -> update('usuario',$data);
 	}
+
+	function guardarUsuario($data)
+	{
+		return $this -> db -> insert('usuario',$data);
+	}
+
 
 
 }
