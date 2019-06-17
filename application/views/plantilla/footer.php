@@ -2,6 +2,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/bootstrap.min.js"></script>
+    <sript type="text/javascript" src="/AdoptaM/assets/js/datatables.js"></sript>
+    <script type="text/javascript" src="/AdoptaM/assets/js/popper.min.js"></script>
 
     <footer id="footer">
         <div class="container-fluid text-light bg-dark tituloLogin">
@@ -22,8 +24,14 @@
             </div>	
         </div>
         </center>
-    </div>
-
+        </div>
+    <!-- Script para habilitar los PopOvers y ToolTips en toda la aplicacion -->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    </footer>
 </body>
-
 </html>

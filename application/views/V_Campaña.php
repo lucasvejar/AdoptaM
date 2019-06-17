@@ -7,37 +7,84 @@
                     <h3 class="ml-5 mt-3"><i class="fas fa-medkit"></i> Información de las Campañas</h3>
                 </div>
                 <div class="card-body">
-                    <div class="signup-form-container">
-                            <!-- form start -->
-                            <form class="form bootstrap-form needs-validation"  novalidate role="form" id="register-form" autocomplete="off">
-                                <div class="form-header ml-5">
-                                    <!-- form header -->
-                                    <div id="info"></div>   <!-- Este div se muestra -->
-                                </div>
-                                <div class="form-body ml-5">
-                                    <div class="form-group mb-0" >
-                                        <label for="usuario"> Tipo de Campaña: </label>  
-                                        <div class="valid-feedback mx-2 col" id="nomV" ></div> 
-                                    </div> 
-                                    <div class="form-group mb-0" >
-                                        <label for="usuario"> Fecha Inicio:</label>
-                                        <div class="valid-feedback mx-2 col " id="apeV" ></div>
-                                    </div> 
-                                    <div class="form-group mb-0" >
-                                        <label for="usuario"> Fecha Cierre: </label> 
-                                        <div class="valid-feedback mx-2 col" id="telefonoValido" ></div>
-                                    </div>                   
-                                </div>
-                
-                                <div class="form-footer ml-5">
-                                    <button  class="btn btn-primary">
-                                        NO HACE NADA <i class="fas fa-edit"></i>
-                                    </button>
-                                </div>
-                            </form>  
-                        </div>
-				</div>
+                    <div class="scroll" style="height: auto;">
+                    <table class="table table-striped table-dark display" id="table_id">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tipo campaña</th>
+                                <th scope="col"><i class="fas fa-calendar-plus"></i> Fecha Inicio</th>
+                                <th scope="col"><i class="fas fa-calendar-minus"></i> Fecha Cierre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if ($campañas != false): ?>
+                            <?php foreach($campañas as $campaña): ?>
+                            <tr>
+                                <td><?= $campaña['id_campaña'] ?></td>
+                                <td><?= $campaña['tipo_campaña'] ?></td>
+                                <td><?= $campaña['fecha_inicio'] ?></td>
+                                <td><?= $campaña['fecha_fin'] ?></td>
+                            </tr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style type="text/css">
+.scroll {
+  height:150px;
+  overflow-y: scroll;
+}
+</style>
+
+<script>
+
+$(document).ready(function () {
+    
+    $('#table_id').DataTable({
+        select: true,  //-----> hace que las filas sean seleccionables
+        paging: true,  //--> habilita el paginado
+        "language": {    //-------> en este array se puede perzonalizar el texto que se muestra en cada uno de los botones y labels de la tabla y como se muestran los datos
+            "lengthMenu": "Muestra _MENU_ campañas por página",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando página _PAGE_ de _PAGES_ páginas",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(Filtrando los _MAX_ registros)",
+            "search": "<i class='fas fa-filter'></i> Buscar por tipo: ",
+            select: {
+                rows: "%d fila seleccionada"
+            },
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "previous": "Anterior",
+                "next": "Siguiente"
+            }
+        },
+        pagingType: 'full_numbers',   //---> es el tipo de botonsitos del paginado, ej: next,previous,first,last
+        lengthChange: true,           //----> le habilita el combo box para que el usuario cambie el numero de paginas que quiere ver
+        lengthMenu: [5,10,20],       //--> longitud del menu del paginado
+        searching: true,             //---> habilita la busqueda de registros
+        "columnDefs": [              //-----> se le cambia propiedades a las columnas, cuales son buscables por filtros, visibles, ordenables
+            { "searchable": false, "targets": 0, "orderable": false, "visible": false},   //---> columna del id
+            { "searchable": true, "targets": [1,2,3], "orderable": true, "visible": true}       
+            ],
+        "ordering": true,                     //-->  habilita el ordenamiento de columnas
+        "search": {                           // -----> opciones para la busqueda de datos 
+            "caseInsensitive": true,        //----> habilita el caseSensitive
+            "search": " ",               //---> se le puede asignar un filtro por defecto a la busqueda asi los encuentra y ordena por ese filtro
+            "smart": true                    //----->  activa la busqueda smart, no busca el String identico, busca los similares y las ocurrencias
+        }
+    });
+
+
+});
+
+</script>

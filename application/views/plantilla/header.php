@@ -9,8 +9,11 @@
   <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/bootstrap/css/bootstrap.css">
   <!-- La libreria de FontAwesome -->
   <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/fontawesome/css/all.css">
+  <!-- Datatables css -->
+  <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/css/datatables.min.css">
   <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/AdoptaM/assets/bootstrap/js/bootstrap.min.js"></script>
+
 
   <!-- Cargo estilo personalizado -->
   <link rel="stylesheet" type="text/css" href="/AdoptaM/assets/bootstrap/css/style.css">
