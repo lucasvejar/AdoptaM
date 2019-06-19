@@ -37,11 +37,11 @@
       <ul class="navbar-nav mr-auto ">
       <?php if ($this->session->has_userdata('nombre_usuario')): ?>
         <li class="nav-item active">
-          <a class="nav-link" href="<?= base_url('C_Inicio') ?>"><i class="fas fa-paw"></i> Inicio</a>
-        </li>                           <!--  C_Conexion/pedirAnimales  -->
+          <a class="nav-link" href="<?= base_url('C_Conexion/pedirAnimales') ?>"><i class="fas fa-paw"></i> Inicio</a>
+        </li>                           <!--  C_Conexion/pedirAnimales  C_Inicio -->
         <li class="nav-item active">
-          <a class="nav-link" href="<?= base_url('C_Campanias') ?>"><i class="fas fa-notes-medical"></i> Campañas</a>
-        </li>
+          <a class="nav-link" href="<?= base_url('C_Conexion/solicitarCampana') ?>"><i class="fas fa-notes-medical"></i> Campañas</a>
+        </li>  <!-- C_Campanias -->
         <li class="nav-item active">
           <a class="nav-link" href="<?= base_url('C_Perfil') ?>"><i class="fas fa-user"></i> Mi Perfil</a>
         </li>

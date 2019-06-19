@@ -95,6 +95,22 @@ class M_Adopcion extends CI_Model {
         return $this->db->update('adopcion');
     }
 
+    
+    function totalAdoptados()
+    {
+        $this-> db -> select('count(id_adopcion) AS totalAdoptados');
+        $this-> db -> from('adopcion');
+        $this-> db -> where('estado',2);
+        $query = $this -> db -> get();
+
+        if ($query -> num_rows()) {
+            return $query->result();
+        } else {
+            return 0;
+        }       
+    }
+
+
 }
 
 

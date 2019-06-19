@@ -68,6 +68,19 @@ class M_Animal extends CI_Model {
     }
 
 
+    function totalAnimales()
+    {
+        $this-> db -> select('count(id_animal) AS totalAnimales');
+        $this-> db -> from('animal');
+        $query = $this -> db -> get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return 0;
+        }
+    }
+
 
     //----> La funcion calcula la edad del animal
     function calculaEdad()

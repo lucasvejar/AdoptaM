@@ -25,7 +25,7 @@ class C_Conexion extends REST_Controller {
     public function pedirAnimales_get()
     {
         $response =json_decode(
-            file_get_contents('http://192.168.1.41/rescatistaAnimales/index.php/rescatista_REST/animales')
+            file_get_contents('http://192.168.1.43/rescatistaAnimales/index.php/rescatista_REST/animales/1')
         );
         $data['animales'] = $response->listaAnimales;
         $this -> load -> view('plantilla/header');
@@ -59,46 +59,17 @@ class C_Conexion extends REST_Controller {
     *	Description:   Este metodo pide las campañas a Lia (el modulo gobierno)
     *
     */
-    public function solicitarCampaña_get()
+    public function solicitarCampana_get()
     {
         $data['campañas'] = json_decode(
-            file_get_contents('http://192.168.43.6/gobierno/index.php/api-campanas')
+            file_get_contents('http://192.168.1.38/gobierno/index.php/api_campanas')
         );
-        echo '<pre>';
+       /* echo '<pre>';
         echo print_r($data['campañas']);
-        echo '</pre>';
-
-        /*
-        PEDIR COSAS AL SERVIDOR
-
-		$respuesta = curl_init();
-	    curl_setopt($respuesta,  CURLOPT_USERAGENT , "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)"); 
-	    curl_setopt($respuesta, CURLOPT_URL, "http://localhost/rescatistaAnimales/index.php/Rescatista_REST/getAdoptante/".$idAdoptante);
-	    curl_exec($respuesta);
-	    curl_close($respuesta);
-	    */
-
-    }
-
-
-    //--- NO SIRVE
-    function solicitarAdopcion_post()
-    {
-        $this -> load -> model('M_Animal','animal');
-        $data['animales'] = $this->animal->obtenerTodos();
-        $this->response($data['animales'],200);
-    }
-
-
-    //----> NO SIRVE
-    public function enviarSolicitud_post($id_animal)
-    {
-        $data['id'] = $id_animal;
-        $this -> load -> model('M_Adopcion','adopcion');
-        if ($this->adopcion->crearAdopcion($this->session->userdata('id_usuario'),$id,'detalle loco')){
-            $adopcion = $this->adopcion->obtenerUno(1);
-            $this->response($adopcion,200);
-        }
+        echo '</pre>';  */
+        $this -> load -> view('plantilla/header');
+        $this -> load -> view('V_Campaña',$data);
+        $this -> load -> view('plantilla/footer');
     }
 
 
@@ -126,17 +97,34 @@ class C_Conexion extends REST_Controller {
     *	Description:   modifica las cosas que me manda horacio y las guardo
     *
     */
-    function modificarAdopciones_get()
+    function modificarAdopciones_post()
     {
         $id_adopcion = $this -> input -> post('id_adopcion');
         $estado = $this -> input -> post('estado');
         $this -> load -> model('M_Adopcion','adopcion');
         // 0 rechazado, 1 espera, 2 aceptado
-        if ($estado == 2) {
-            $this->adopcion->cambiarEstado($id_adopcion,$estado);
-        } else {
-            
-        }    
+        $this->adopcion->cambiarEstado($id_adopcion,$estado); 
+    }
+
+
+    /*
+    *	Function name:
+    *	Date:
+    *	Input args:
+    *	Output args:
+    *	Description:   el metodo le da cosas a Facu para que pueda hacer el grafico de tortas
+    *
+    */
+    function infoGobierno_get()
+    {
+        $this -> load -> model('M_Animal','animal');
+        $this -> load -> model('M_Adopcion','adopcion');
+        $totalAdoptados = $this->adopcion->totalAdoptados();
+        $totalAnimles = $this->animal->totalAnimales();
+        
+        $data['noAdoptados'] = $totalAnimles[0]->totalAnimales - $totalAdoptados[0]->totalAdoptados;
+        $data['adoptados'] = $totalAdoptados[0]->totalAdoptados;
+        $this->response($data,200);
     }
 
 

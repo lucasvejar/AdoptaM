@@ -8,28 +8,29 @@
                 </div>
                 <div class="card-body">
                     <div class="scroll" style="height: auto;">
+                    <?php if ($campañas != false): ?>
                     <table class="table table-striped table-dark display" id="table_id">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Tipo campaña</th>
-                                <th scope="col"><i class="fas fa-calendar-plus"></i> Fecha Inicio</th>
-                                <th scope="col"><i class="fas fa-calendar-minus"></i> Fecha Cierre</th>
+                                <th scope="col"><i class="fas fa-calendar-plus"></i> Fecha </th>
+                                <th scope="col"><i class="fas fa-calendar-minus"></i> Ubicación</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if ($campañas != false): ?>
                             <?php foreach($campañas as $campaña): ?>
                             <tr>
-                                <td><?= $campaña['id_campaña'] ?></td>
-                                <td><?= $campaña['tipo_campaña'] ?></td>
-                                <td><?= $campaña['fecha_inicio'] ?></td>
-                                <td><?= $campaña['fecha_fin'] ?></td>
+                                
+                                <td><?= $campaña->nombreCampana ?></td>
+                                <td><?= $campaña->fecha ?></td>
+                                <td><?= $campaña->ubicacion ?></td>
                             </tr>
                             <?php endforeach ?>
-                        <?php endif ?>
                         </tbody>
                     </table>
+                    <?php else: ?>
+                        <h4 class="ml-5">No hay datos.</h4>
+                    <?php endif ?>
                     </div>
                 </div>
 			</div>

@@ -30,8 +30,8 @@ class C_InicioSesion extends CI_Controller {
 		$usuario = $this->usuario->IniciarSesion($user,$pass);
 		if ($usuario) {
 			$this->session->set_userdata($usuario);
-			redirect(base_url('C_Inicio'));
-			//redirect(base_url('C_Conexion/pedirAnimales'));
+			//redirect(base_url('C_Inicio'));
+			redirect(base_url('C_Conexion/pedirAnimales'));
 		} else {				
 			$this->index("Usuario o contraseña incorrecta. Intente nuevamente!");
 		}
